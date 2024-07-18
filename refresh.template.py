@@ -174,7 +174,7 @@ def _parse_headers_from_makefile_deps(d_file_content: str, source_path_for_sanit
     target, dependencies = d_file_content.split(': ', 1)  # Needs to handle absolute Windows paths, like C:\
     target = target.strip()  # Remove the optional trailing space.
     if target.endswith(('.o', '.obj')):
-        log_warning("Something went wrong in makefile parsing to get headers. The target should be an object file. Output:\n" + d_file_content)
+        log_warning(f">>> Something went wrong in makefile parsing to get headers. The target should be an object file. Output:\n{d_file_content}")
         return set()
     # Undo shell-like line wrapping because the newlines aren't eaten by shlex.join. Note also that it's the line wrapping is inconsistently generated across compilers and depends on the lengths of the filenames, so you can't just split on the escaped newlines.
     dependencies = dependencies.replace('\\\n', '')
